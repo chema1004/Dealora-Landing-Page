@@ -50,63 +50,64 @@ dealora-landing/
 │   ├── hero-app-mockup.png      # Mockup app (opcional)
 │   └── apple-touch-icon.png     # iOS icon (opcional)
 └── 📖 README.md                 # Documentación (8.2KB)
-📱 Secciones y Componentes
-1. Hero Section
-Propósito: Captar atención inmediata
 
-Componentes: Headline, subheadline, CTAs, stats
+---
+## 📱 Secciones y Componentes
 
-Técnicas: Gradient text, animated mockup
+### 1. Hero Section  
+- **Propósito:** Captar atención inmediata  
+- **Componentes:** Headline, subheadline, CTAs, stats  
+- **Técnicas:** Gradient text, animated mockup  
 
-2. Benefits Grid
-Estructura: 3-column responsive grid
+### 2. Benefits Grid  
+- **Estructura:** 3-column responsive grid  
+- **Animaciones:** Hover effects, scale transitions  
+- **Iconos:** Emojis nativos (performance)  
 
-Animaciones: Hover effects, scale transitions
+### 3. How-it-works  
+- **Diseño:** Timeline visual con números  
+- **Responsive:** Stack en mobile, inline en desktop  
 
-Iconos: Emojis nativos (performance)
+### 4. Categories Showcase  
+- **Grid:** 4-column (desktop), 2-column (tablet), 1-column (mobile)  
+- **Efectos:** Card hovers, gradient backgrounds  
 
-3. How-it-works
-Diseño: Timeline visual con números
+### 5. Business Section  
+- **Target:** Establecimientos/comercios  
+- **Elementos:** Value proposition, benefits list, CTA  
 
-Responsive: Stack en mobile, inline en desktop
+### 6. Waitlist Form  
+- **Campos:** Nombre, email, tipo de usuario  
+- **Validación:** Client-side + submission handling  
 
-4. Categories Showcase
-Grid: 4-column (desktop), 2-column (tablet), 1-column (mobile)
+---
 
-Efectos: Card hovers, gradient backgrounds
+## 🚀 Optimización de Performance
 
-5. Business Section
-Target: Establecimientos/comercios
+- ✅ Lazy loading para imágenes  
+- ✅ CSS crítico inline para above-the-fold  
+- ✅ JavaScript defer/async  
+- ✅ Preconnect para Google Fonts  
+- ✅ Minificación de assets  
+- ✅ Compresión Gzip/Brotli  
 
-Elementos: Value proposition, benefits list, CTA
+---
 
-6. Waitlist Form
-Campos: Nombre, email, tipo de usuario
+## 🌐 Compatibilidad y Navegadores
 
-Validación: Client-side + submission handling
+| Navegador | Versión            | Soporte     |
+|-----------|--------------------|-------------|
+| Chrome    | 90+                | ✅ Completo |
+| Firefox   | 88+                | ✅ Completo |
+| Safari    | 14+                | ✅ Completo |
+| Edge      | 90+                | ✅ Completo |
+| Mobile    | iOS 12+/Android 8+ | ✅ Completo |
 
-🚀 Optimización de Performance
-✅ Lazy loading para imágenes
+---
 
-✅ CSS crítico inline para above-the-fold
+## 👤 Autor y Contacto
 
-✅ JavaScript defer/async
+**Desarrollado por:** Luis Francisco Rosas Vega  
+📧 **Correo:** ruisco04@gmail.com  
+📱 **Teléfono:** +52 687 153 9579
 
-✅ Preconnect para Google Fonts
-
-✅ Minificación de assets
-
-✅ Compresión Gzip/Brotli
-
-🌐 Compatibilidad y Navegadores
-Navegador	Versión	Soporte
-Chrome	90+	✅ Completo
-Firefox	88+	✅ Completo
-Safari	14+	✅ Completo
-Edge	90+	✅ Completo
-Mobile	iOS 12+/Android 8+	✅ Completo
-
-👤 Autor y Contacto
-Desarrollado por: Luis Francisco Rosas Vega
-📧 Correo: rusico04@gmail.com
-📱 Teléfono: +52 687 153 9579
