@@ -1,6 +1,8 @@
-// Dealora Landing Page JavaScript
+// Dealora Landing Page JavaScript - CORREGIDO
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Dealora landing page loaded successfully!');
+
     // Mobile Menu Toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const originalText = submitButton.textContent;
             
             // Show loading state
-            submitButton.innerHTML = '<div class="spinner"></div>';
+            submitButton.innerHTML = 'Procesando...';
             submitButton.disabled = true;
             
             // Simulate API call
@@ -57,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     successMessage.classList.add('hidden');
                 }, 5000);
                 
-                // Here you would typically send the data to your backend
                 console.log('Form submitted:', { name, email, userType });
                 
             }, 1500);
@@ -78,11 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle answer visibility
             if (answer.classList.contains('hidden')) {
                 answer.classList.remove('hidden');
-                answer.style.maxHeight = answer.scrollHeight + 'px';
                 icon.textContent = '−';
             } else {
                 answer.classList.add('hidden');
-                answer.style.maxHeight = '0';
                 icon.textContent = '+';
             }
             
@@ -93,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     const otherAnswer = otherQuestion.nextElementSibling;
                     const otherIcon = otherQuestion.querySelector('.faq-icon');
                     otherAnswer.classList.add('hidden');
-                    otherAnswer.style.maxHeight = '0';
                     otherIcon.textContent = '+';
                 }
             });
@@ -130,92 +128,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Header scroll effect
     const header = document.querySelector('header');
-    let lastScrollY = window.scrollY;
     
     window.addEventListener('scroll', function() {
         if (window.scrollY > 100) {
             header.classList.add('shadow-lg');
+            header.classList.remove('shadow-sm');
         } else {
             header.classList.remove('shadow-lg');
+            header.classList.add('shadow-sm');
         }
-        
-        // Hide header on scroll down, show on scroll up
-        if (window.scrollY > lastScrollY && window.scrollY > 200) {
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            header.style.transform = 'translateY(0)';
-        }
-        
-        lastScrollY = window.scrollY;
     });
-
-    // Intersection Observer for animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-fade-in');
-            }
-        });
-    }, observerOptions);
-
-    // Observe elements for animation
-    document.querySelectorAll('.grid > div, .text-center').forEach(el => {
-        el.classList.add('opacity-0', 'transition-opacity', 'duration-500');
-        observer.observe(el);
-    });
-
-    // Add fade-in animation
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-    `;
-    document.head.appendChild(style);
-
-    // Counter animation for stats
-    const stats = document.querySelectorAll('.text-2xl.font-bold.text-gray-900');
-    
-    const startCounters = () => {
-        stats.forEach(stat => {
-            const target = parseInt(stat.textContent);
-            let current = 0;
-            const increment = target / 50;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    stat.textContent = target + '+';
-                    clearInterval(timer);
-                } else {
-                    stat.textContent = Math.floor(current) + '+';
-                }
-            }, 50);
-        });
-    };
-
-    // Start counters when stats section is in view
-    const statsObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                startCounters();
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    });
-
-    const statsSection = document.querySelector('.flex.items-center.space-x-8');
-    if (statsSection) {
-        statsObserver.observe(statsSection);
-    }
 
     // Back to top button
     const backToTopButton = document.createElement('button');
@@ -249,7 +171,49 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    console.log('Dealora landing page loaded successfully!');
+    // Safe counter animation ONLY for valid numbers
+    const startSafeCounters = () => {
+        const statsElements = document.querySelectorAll('.text-2xl.font-bold.text-gray-900');
+        
+        statsElements.forEach(element => {
+            const textContent = element.textContent.trim();
+            
+            // Only animate if it's a plain number (not "500+" or "70%")
+            if (/^\d+$/.test(textContent)) {
+                const target = parseInt(textContent);
+                
+                if (!isNaN(target) && target > 0) {
+                    let current = 0;
+                    const increment = target / 50;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            element.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            element.textContent = Math.floor(current);
+                        }
+                    }, 50);
+                }
+            }
+        });
+    };
+
+    // Initialize counters only if the section exists and has valid numbers
+    const statsSection = document.querySelector('.flex.items-center.space-x-8');
+    if (statsSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startSafeCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        observer.observe(statsSection);
+    }
 });
 
 // Add some utility functions
@@ -286,3 +250,53 @@ document.addEventListener('DOMContentLoaded', function() {
         copyrightElement.innerHTML = copyrightElement.innerHTML.replace('2024', currentYear);
     }
 });
+
+// CSS for back-to-top button and animations
+const style = document.createElement('style');
+style.textContent = `
+    .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        border: none;
+        font-size: 20px;
+    }
+
+    .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .back-to-top:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fade-in {
+        animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    /* Remove spinner CSS to avoid NaN issues */
+    .spinner {
+        display: none;
+    }
+`;
+document.head.appendChild(style);
