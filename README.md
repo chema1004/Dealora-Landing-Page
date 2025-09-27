@@ -34,24 +34,6 @@ El sitio está optimizado para conversiones y diseñado para captar tanto **usua
 - ✅ Performance - Score Lighthouse 95+  
 
 ---
-
-## 📁 Estructura del Proyecto
-
-```text
-dealora-landing/
-├── 🏠 index.html                 # Página principal (3.5KB)
-├── 🎨 css/
-│   └── style.css                # Estilos personalizados (2.1KB)
-├── ⚡ js/
-│   └── script.js                # Lógica de la aplicación (4.8KB)
-├── 🖼️ images/                   # Assets multimedia
-│   ├── favicon.ico              # Icono del sitio (4KB)
-│   ├── logo.svg                 # Logo (opcional)
-│   ├── hero-app-mockup.png      # Mockup app (opcional)
-│   └── apple-touch-icon.png     # iOS icon (opcional)
-└── 📖 README.md                 # Documentación (8.2KB)
-
----
 ## 📱 Secciones y Componentes
 
 ### 1. Hero Section  
@@ -110,4 +92,22 @@ dealora-landing/
 **Desarrollado por:** Luis Francisco Rosas Vega  
 📧 **Correo:** ruisco04@gmail.com  
 📱 **Teléfono:** +52 687 153 9579
+
+---
+## 📁 Estructura del Proyecto
+
+```text
+dealora-landing/
+├── 🏠 index.html                 # Página principal (3.5KB)
+├── 🎨 css/
+│   └── style.css                # Estilos personalizados (2.1KB)
+├── ⚡ js/
+│   └── script.js                # Lógica de la aplicación (4.8KB)
+├── 🖼️ images/                   # Assets multimedia
+│   ├── favicon.ico              # Icono del sitio (4KB)
+│   ├── logo.svg                 # Logo (opcional)
+│   ├── hero-app-mockup.png      # Mockup app (opcional)
+│   └── apple-touch-icon.png     # iOS icon (opcional)
+└── 📖 README.md                 # Documentación (8.2KB)
+
 
